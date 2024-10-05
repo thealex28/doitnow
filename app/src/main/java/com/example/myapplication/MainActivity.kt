@@ -1,15 +1,18 @@
 package io.alexander.doitnow
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
+import com.google.android.material.snackbar.Snackbar
 import io.alexander.doitnow.databinding.ActivityMainBinding
+import io.alexander.doitnow.ui.login.LoginActivity
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +21,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val signedIn = false
+        if (!signedIn){
+            val myIntent = Intent(
+                this,
+                LoginActivity::class.java
+            )
+            startActivity(myIntent)
+            return
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
